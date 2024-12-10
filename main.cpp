@@ -23,7 +23,12 @@ int main() {
 
   // Testando a calculadora
   calculadora1.obtenhaTela()->adicione(UM);
+  calculadora1.obtenhaTela()->limpe();
+  calculadora1.obtenhaTela()->definaSinal(NEGATIVO);
+  calculadora1.obtenhaTela()->adicione(UM);
   calculadora1.obtenhaTela()->adicione(ZERO);
+  calculadora1.obtenhaTela()->definaSeparadorDecimal();
+  calculadora1.obtenhaTela()->adicione(UM);
 
   std::cout << "All it's okey!\n";
   return 0;
