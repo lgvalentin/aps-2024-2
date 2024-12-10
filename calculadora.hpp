@@ -50,7 +50,7 @@ public:
   virtual void pressione() = 0;
 
   virtual void definaTeclado(Teclado*) = 0;
-  virtual Tela* obtenhaTeclado()= 0;
+  virtual Teclado* obtenhaTeclado() = 0;
 };
 
 class Calculadora {
@@ -59,10 +59,10 @@ public:
   virtual Tela* obtenhaTela()= 0;
 
   virtual void definaUcp(Ucp*) = 0;
-  virtual Tela* obtenhaUcp()= 0;
+  virtual Ucp* obtenhaUcp()= 0;
 
   virtual void definaTeclado(Teclado*) = 0;
-  virtual Tela* obtenhaTeclado()= 0;
+  virtual Teclado* obtenhaTeclado() = 0;
 };
 
 class Teclado {
@@ -70,5 +70,5 @@ public:
   virtual void adicioneTecla(Tecla &tecla) = 0;
 
   virtual void definaUcp(Ucp*) = 0;
-  virtual Tela* obtenhaUcp()= 0;
+  virtual Ucp* obtenhaUcp() = 0;
 };
