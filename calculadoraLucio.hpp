@@ -14,24 +14,41 @@ public:
 class UcpLucio: public Ucp {
 public:
   Tela *tela;
+
+  void definaTela(Tela*);
+  Tela* obtenhaTela();
 };
 
 class TeclaLucio: public Tecla {
-public:
   Teclado *teclado;
+public:
   void pressione();
+
+  void definaTeclado(Teclado*);
+  Teclado* obtenhaTeclado();
 };
 
 class CalculadoraLucio: public Calculadora {
-public:
   Tela *tela;
   Ucp *ucp;
   Teclado *teclado;
+public:
+  void definaTela(Tela*);
+  Tela* obtenhaTela();
+
+  void definaUcp(Ucp*);
+  Ucp* obtenhaUcp();
+
+  void definaTeclado(Teclado*);
+  Teclado* obtenhaTeclado();
 };
 
 class TecladoLucio: public Teclado {
-public:
   Ucp *ucp;
   std::vector<Tecla *> teclas;
+public:
   void adicioneTecla(Tecla &tecla);
+
+  void definaUcp(Ucp*);
+  Ucp* obtenhaUcp();
 };
