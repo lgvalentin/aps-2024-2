@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 
+#include "telaLucio.hpp"
+#include "teclaLucio.hpp"
+#include "tecladoLucio.hpp"
+#include "ucpLucio.hpp"
 #include "calculadoraLucio.hpp"
 
 int main() {
