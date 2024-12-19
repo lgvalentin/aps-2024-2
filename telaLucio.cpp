@@ -13,7 +13,7 @@ void TelaLucio::adicione(Digito digito)
     break;
 
   default:
-    std::cout << "Dígito ainda não implementado!\n";
+    std::cout << "Tela::Dígito ainda não implementado!\n";
   }
 }
 

@@ -7,3 +7,13 @@ void TecladoLucio::adicioneTecla(Tecla &tecla)
 
 void TecladoLucio::definaUcp(Ucp *ucp) { this->ucp = ucp; }
 Ucp* TecladoLucio::obtenhaUcp() { return this->ucp; }
+
+void TecladoLucio::recebaDigito(Digito){
+    
+}
+void TecladoLucio::recebaOperacao(Operacao){
+    
+}
+void TecladoLucio::recebaControle(Controle){
+    
+}

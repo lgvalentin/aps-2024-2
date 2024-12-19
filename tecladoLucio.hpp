@@ -10,4 +10,8 @@ public:
 
   void definaUcp(Ucp*);
   Ucp* obtenhaUcp();
+
+  void recebaDigito(Digito);
+  void recebaOperacao(Operacao);
+  void recebaControle(Controle);
 };

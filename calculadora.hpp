@@ -45,6 +45,10 @@ class Ucp {
 public:
   virtual void definaTela(Tela*) = 0;
   virtual Tela* obtenhaTela() = 0;
+
+  virtual void recebaDigito(Digito) = 0;
+  virtual void recebaOperacao(Operacao) = 0;
+  virtual void recebaControle(Controle) = 0;
 };
 
 class Tecla {
@@ -73,4 +77,8 @@ public:
 
   virtual void definaUcp(Ucp*) = 0;
   virtual Ucp* obtenhaUcp() = 0;
+  
+  virtual void recebaDigito(Digito) = 0;
+  virtual void recebaOperacao(Operacao) = 0;
+  virtual void recebaControle(Controle) = 0;
 };

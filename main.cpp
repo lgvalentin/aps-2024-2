@@ -34,6 +34,18 @@ int main() {
   calculadora1.obtenhaTela()->definaSeparadorDecimal();
   calculadora1.obtenhaTela()->adicione(UM);
 
+  
+  ucp1.obtenhaTela()->limpe();
+  ucp1.recebaDigito(UM);
+  ucp1.recebaDigito(DOIS);
+  ucp1.recebaDigito(TRES);
+
+  ucp1.recebaOperacao(SOMA);
+
+  ucp1.recebaDigito(QUATRO);
+  ucp1.recebaDigito(CINCO);
+  ucp1.recebaDigito(SEIS);
+
   std::cout << "All it's okey!\n";
   return 0;
 }
