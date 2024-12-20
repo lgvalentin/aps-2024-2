@@ -21,6 +21,9 @@ class UcpLucio: public Ucp {
   
   int convertaDigitosParaNumero(Digito*, unsigned char);
   int convertaNumeroParaDigitos(int numero, Digito*, unsigned char*);
+
+  void mostreDigitos(Digito*, unsigned char);
+
 public:
   void definaTela(Tela*);
   Tela* obtenhaTela();

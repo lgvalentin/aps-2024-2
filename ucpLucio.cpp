@@ -25,16 +25,17 @@ void UcpLucio::calculeIgual()
 {
     int num1 = this->convertaDigitosParaNumero(this->digitosOperando1, this->digitosOperando1Count);
     int num2 = this->convertaDigitosParaNumero(this->digitosOperando2, this->digitosOperando2Count);
-
+//    std::cout << "calcule: " << num1 << ", " << num2 << std::endl;
     switch (*this->operacaoCorrente)
     {
-    case SOMA:
-        num1 = num1 + num2;
+    case SOMA: num1 = num1 + num2; break;
     default:
         throw "UCP::Operacao ainda nao implementada";
     }
+//    std::cout << "calcule:#" << num1 << ", " << num2 << std::endl;
 
     this->convertaNumeroParaDigitos(num1, this->digitosOperando1, &this->digitosOperando1Count);
+    this->mostreDigitos(this->digitosOperando1, this->digitosOperando1Count);
 }
 
 int UcpLucio::convertaDigitosParaNumero(Digito *digitos, unsigned char count)
@@ -47,11 +48,10 @@ int UcpLucio::convertaDigitosParaNumero(Digito *digitos, unsigned char count)
 int UcpLucio::convertaNumeroParaDigitos(int numero, Digito *digitos, unsigned char *count)
 {
     *count = 0;
-
     while (numero > 0)
     {
         Digito digito = Digito(numero % 10);
-        digitos[*count++] = digito;
+        digitos[(*count)++] = digito;
         numero /= 10;
     }
 
@@ -65,6 +65,15 @@ int UcpLucio::convertaNumeroParaDigitos(int numero, Digito *digitos, unsigned ch
     return 0;
 }
 
+
+void UcpLucio::mostreDigitos(Digito* digitos, unsigned char count){
+    if(!this->tela) return;
+   
+    this->tela->limpe();
+    for(int i = 0; i < count; i++){
+        this->tela->adicione(digitos[i]);
+    }
+}
 //=========================================
 // PUBLICs
 void UcpLucio::definaTela(Tela *tela) { this->tela = tela; }
@@ -79,10 +88,11 @@ void UcpLucio::recebaDigito(Digito digito)
 
 void UcpLucio::recebaOperacao(Operacao operacao)
 {
-    if (this->temOperacao())
+    if (!this->temOperacao()){
         this->operacaoCorrente = new Operacao();
+    }
 
-    *(this->operacaoCorrente) = operacao;
+    *this->operacaoCorrente = operacao;
 }
 
 void UcpLucio::recebaControle(Controle controle)
@@ -93,6 +103,6 @@ void UcpLucio::recebaControle(Controle controle)
         this->calculeIgual();
         break;
     default:
-        throw "UCP::Operacao ainda nao implementada";
+        throw "UCP::Controle ainda nao implementada";
     }
 }
