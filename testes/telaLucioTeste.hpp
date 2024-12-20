@@ -2,7 +2,7 @@
 
 #include <climits>
 
-#include "calculadora.hpp"
+#include "../calculadora.hpp"
 
 class TelaLucioTeste: public Tela {
 public:
