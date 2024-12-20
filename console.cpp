@@ -25,7 +25,7 @@ void Console::showCursor()
 
 void Console::setCursor(int row, int col)
 {
-    cout << "\033[" << col << ';' << row << 'H';
+    cout << "\033[" << row << ';' << col << 'H';
 }
 
 void Console::setColor(Color color)

@@ -1,30 +1,97 @@
-
 #include "telaLucio.hpp"
+#include "console.hpp"
+#include <iostream>
 
-void TelaLucio::adicione(Digito digito)
+
+const char* TelaLucio::DIGITOS[][TelaLucio::TOTAL_DIGITOS][TelaLucio::ALTURA_DIGITOS] = {
 {
-  switch (digito)
-  {
-  case ZERO:
-    std::cout << "0000\n0  0\n0  0\n0  0\n0000\n";
-    break;
-  case UM:
-    std::cout << "  1 \n 11 \n  1 \n  1 \n1111\n";
-    break;
+    {"0000","0  0","0  0","0  0","0000"},
+    {"  1 "," 11 ","  1 ","  1 ","1111"},
+    {"2222","   2","2222","2   ","2222"},
+    {"3333","   3"," 333","   3","3333"},
+    {"4  4","4  4","4444","   4","   4"},
+    {"5555","5   ","5555","   5","5555"},
+    {"666 ","6   ","6666","6  6","6666"},
+    {"7777","   7","  7 "," 7  "," 7  "},
+    {"8888","8  8","8888","8  8","8888"},
+    {"9999","9  9","9999","   9"," 999"},
+    {" "," "," "," ","."}
+},
+{
+    {"☹☹☹☹","☹  ☹","☹  ☹","☹  ☹","☹☹☹☹"},
+    {"  ☹ ","  ☹ ","  ☹ ","  ☹ ","☹☹☹☹"},
+    {"☹☹☹☹","   ☹","☹☹☹☹","☹   ","☹☹☹☹"},
+    {"☹☹☹☹","   ☹"," ☹☹☹","   ☹","☹☹☹☹"},
+    {"☹  ☹","☹  ☹","☹☹☹☹","   ☹","   ☹"},
+    {"☹☹☹☹","☹   ","☹☹☹☹","   ☹","☹☹☹☹"},
+    {"☹☹☹ ","☹   ","☹☹☹☹","☹  ☹","☹☹☹☹"},
+    {"☹☹☹☹","   ☹","  ☹ "," ☹  "," ☹  "},
+    {"☹☹☹☹","☹  ☹","☹☹☹☹","☹  ☹","☹☹☹☹"},
+    {"☹☹☹☹","☹  ☹","☹☹☹☹","   ☹"," ☹☹☹"},
+    {" "," "," "," ","☹"}
+},
+{
+    {"████","█  █","█  █","█  █","████"},
+    {"  █ ","  █ ","  █ ","  █ ","████"},
+    {"████","   █","████","█   ","████"},
+    {"████","   █"," ███","   █","████"},
+    {"█  █","█  █","████","   █","   █"},
+    {"████","█   ","████","   █","████"},
+    {"███ ","█   ","████","█  █","████"},
+    {"████","   █","  █ "," █  "," █  "},
+    {"████","█  █","████","█  █","████"},
+    {"████","█  █","████","   █"," ███"},
+    {""," ","","","◆"}
+}
+};
 
-  default:
-    std::cout << "Tela::Dígito ainda não implementado!\n";
+void TelaLucio::mostarDigito(Digito digito, unsigned char indexPosition){
+  for(int i = 1; i<= ALTURA_DIGITOS; i++){
+    Console::setCursor(i, indexPosition*LARGURA_DIGITOS+1); 
+    std::cout << DIGITOS[this->modeloDigitosCorrente][digito][i-1];
+  }
+
+  if(indexPosition == this->posicaoDecimal)
+    std::cout << DIGITOS[this->modeloDigitosCorrente][10][4];
+
+  std::cout << std::endl;
+}
+
+void TelaLucio::atualizar(){
+  Console::clearScreen();
+  for(int i=0; i < this->digitosCount; i++){
+    this->mostarDigito(this->digitos[i], MAX_DIGITOS-this->digitosCount+i);
   }
 }
 
-void TelaLucio::limpe() { std::cout << "\n\n\n\n\n"; }
+TelaLucio::TelaLucio(){
+  Console::init(0,0);
+  this->limpe();
+}
+
+void TelaLucio::adicione(Digito digito)
+{
+  this->digitos[this->digitosCount++] = digito;
+
+  this->atualizar();
+}
+
+void TelaLucio::limpe() { 
+  this->digitosCount = 0;
+  this->sinal = Sinal::POSITIVO;
+  this->posicaoDecimal = UCHAR_MAX; 
+
+  this->atualizar();
+}
 
 void TelaLucio::definaSinal(Sinal sinal)
 {
-  std::cout << (sinal == Sinal::NEGATIVO ? "-----\n" : "");
+  this->sinal = sinal;
+  this->atualizar();
 }
 
 void TelaLucio::definaSeparadorDecimal()
 {
-  std::cout << "::\n";
+  this->posicaoDecimal = digitosCount-1;
+  this->atualizar();
 }
